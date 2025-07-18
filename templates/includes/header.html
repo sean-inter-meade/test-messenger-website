@@ -1,0 +1,13 @@
+<nav>
+    <ul>
+        <li><a href="{% url 'index' %}">Home</a></li>
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">Log Out</a></li>
+            <li><a href="{% url 'dashboard_intercom' %}">Dashboard</a></li>
+            <li><a href="{% url 'password_change' %}">Change Password</a></li>
+        {% else %}
+            <li><a href="{% url 'login' %}">Log In</a></li>
+            <li><a href="{% url 'register' %}">Register</a></li> {# You'll need to implement registration separately #}
+        {% endif %}
+    </ul>
+</nav>
