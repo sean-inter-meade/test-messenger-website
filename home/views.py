@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 import jwt
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 # Helper function to generate the Intercom JWT
 def generate_intercom_token(user):
@@ -14,7 +14,7 @@ def generate_intercom_token(user):
         return None
 
     # Intercom recommends a short expiry for security, e.g., 1 hour
-    expires_at = int((datetime.utcnow() + timedelta(hours=1)).timestamp())
+    expires_at = int((datetime.now(timezone.utc) + timedelta(hours=1)).timestamp())
 
     # Payload must include 'user_id'
     payload = {
