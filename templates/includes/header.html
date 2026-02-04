@@ -7,12 +7,14 @@
     <button type="submit" style="background: none; border: none; padding: 0; margin: 0; color: blue; cursor: pointer; text-decoration: underline;">
       Log Out
     </button>
-  </form>            <li><a href="{% url 'dashboard_intercom' %}">Dashboard</a></li>
+  </form>            
   <li><a href="">Test link</a></li>
             <li><a href="{% url 'password_change' %}">Change Password</a></li>
         {% else %}
             <li><a href="{% url 'login' %}">Log In</a></li>
             <li><a href="{% url 'register' %}">Register</a></li> {# You'll need to implement registration separately #}
         {% endif %}
+        <li><a href="{% url 'dashboard_intercom' %}">Dashboard</a></li>
     </ul>
+    
 </nav>
