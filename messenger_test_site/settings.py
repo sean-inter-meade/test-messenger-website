@@ -80,6 +80,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'messenger_test_site.wsgi.application'
 
+SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
+
 tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
 use_neon = False if os.environ.get("NEON") == 'False' else True
 
