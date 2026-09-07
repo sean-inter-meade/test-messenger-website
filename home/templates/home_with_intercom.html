@@ -1,13 +1,18 @@
 {% extends 'base.html' %}
 
-{% block title %}My Dashboard{% endblock %}
+{% block title %}Dashboard{% endblock %}
 
 {% block content %}
-    <h2>Welcome to your dashboard, {{ user.username }}!</h2>
-    <p>This page has the Intercom messenger enabled.</p>
-{% endblock %}
+    <h2>Welcome, {{ user.username }}!</h2>
+    <p>Intercom messenger is active and booted with your identity.</p>
 
-{% block extra_js %}
-    {# Only load Intercom if we have an app ID and a JWT #}
-        
+    <section>
+        <h3>Test Attribute</h3>
+        <p>Set a custom <code>test_attribute</code> value passed to Intercom on every page load.</p>
+        <form method="post" action="{% url 'update_test_attribute' %}">
+            {% csrf_token %}
+            <input type="text" name="test_attribute" value="{{ user.profile.test_attribute }}" placeholder="e.g. plan_enterprise">
+            <button type="submit">Save</button>
+        </form>
+    </section>
 {% endblock %}
