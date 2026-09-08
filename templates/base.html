@@ -42,6 +42,12 @@
         {% if intercom_user_jwt %}intercom_user_jwt: "{{ intercom_user_jwt }}",{% endif %}
         {% with profile=request.user.profile %}{% if profile.test_attribute %}test_attribute: "{{ profile.test_attribute }}",{% endif %}{% endwith %}
       });
+
+      // Intercom keeps a 7-day session cookie; without shutdown the next user's
+      // boot collides with the previous user's session.
+      document.querySelectorAll('form[action="{% url "logout" %}"]').forEach(function (f) {
+        f.addEventListener('submit', function () { window.Intercom('shutdown'); });
+      });
     </script>
     {% else %}
     <script>
